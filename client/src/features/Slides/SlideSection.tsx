@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import GoogleSlides from './GoogleSlides'
 
 import { Button } from "@/components/ui/button";
+import Icon from '../../assets/google_slides.png';
 
 import {
   Popover,
@@ -48,19 +49,20 @@ function SlideSection() {
     }
 
     return (
-        <div className='flex gap-2'>
+        <div className='flex flex-wrap gap-2 bg-[#51576D] m-2 rounded-[20px] shadow-widget'>
+            <div className='w-full text-lg text-white font-regular font-roboto p-3'><img src={Icon} className='h-20'></img></div>
             {slides?.length ? slides.map((slideLink, i) => {
                 return(
                     <div key={i}>
                         <GoogleSlides src={slideLink} />
-                        <Button className='bg-gray-700 text-white rounded-[10px] hover:text-gray-700 font-semibold' onClick={() => { deleteSlide(i) }}>Delete Slide</Button>
+                        <Button className='bg-gray-700 ml-5 mb-5 text-white rounded-[10px] hover:text-gray-900 font-semibold' onClick={() => { deleteSlide(i) }}>Delete Slide</Button>
                     </div>
                 )
             }) : ''}
             {slides.length >= 3 ? '' : 
             <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
                 <PopoverTrigger>
-                <Button variant='default' className='bg-gray-700 text-white rounded-[10px] hover:text-gray-700 font-semibold m-10'>Add Slide</Button>
+                <Button variant='default' className='bg-gray-700 text-white rounded-[10px] hover:text-gray-900 font-semibold m-3'>Add Slide</Button>
                 </PopoverTrigger>
                 <PopoverContent className='p-0 border-none'>
                 <div className='bg-gray-700 rounded-[10px]'>

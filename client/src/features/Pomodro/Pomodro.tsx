@@ -49,7 +49,7 @@ const PomodoroClock: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-[100px] w-[350px] bg-gray-700 m-5 rounded-[10px] p-5">
+        <div className="flex flex-col items-center justify-center min-h-[100px] w-[350px] bg-[#51576D] m-5 rounded-[10px] p-5">
             <div className='flex flex-row justify-evenly items-center font-roboto font-semibold text-sm text-center'>
                 <div className={`m-2 p-2 cursor-pointer  rounded-xl ${tab === 1 ? 'bg-gray-400 text-gray-800' : 'text-white'
                     }`} onClick={(e) => setPomodro(1)} >
