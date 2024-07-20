@@ -18,7 +18,7 @@ function Sidebar() {
   }, []);
 
   return (
-    <div className='rounded-r-lg h-full w-[400px] border-r'>
+    <div className='rounded-r-lg h-full w-[400px] border-r fixed z-20'>
         <div className='pt-5 pb-1 pl-7 flex gap-3 items-center justify-start'>
             <User2Icon className='border rounded-full h-7 w-7' />
             <span className='text-md text-gray-500 font-semibold font-roboto'>Agnish Bhattacharya</span>
