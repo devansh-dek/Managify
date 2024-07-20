@@ -54,7 +54,7 @@ function Spotify() {
         allowFullScreen
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
-      ></iframe> :
+      ></iframe> 
 
       <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
         <PopoverTrigger>
@@ -68,7 +68,7 @@ function Spotify() {
               value={spotifyLink}
               onChange={(e) => setSpotifyLink(e.target.value)}
             />
-            <Button onClick={changePlayList} className='m-5 bg-green-500 text-white rounded-[10px]'>Update Playlist</Button>
+            <Button onClick={changePlayList} className=' bg-green-500 text-white rounded-[10px]'>Update Playlist</Button>
           </div>
         </PopoverContent>
       </Popover>
