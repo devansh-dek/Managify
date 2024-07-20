@@ -5,7 +5,7 @@ import SlideSection from "./features/Slides/SlideSection.tsx";
 
 function App() {
   return (
-    <div className='h-screen w-screen flex overflow-x-hidden'>
+    <div className='h-screen w-screen flex overflow-x-hidden bg-[#626880]'>
 
       <Sidebar />
       <div className="flex flex-col w-screen overflow-y-scroll pl-[400px]">

@@ -18,14 +18,14 @@ function Sidebar() {
   }, []);
 
   return (
-    <div className='rounded-r-lg h-full w-[400px] border-r fixed z-20'>
+    <div className='rounded-r-lg h-full w-[400px] fixed z-20 bg-[#414559]'>
         <div className='pt-5 pb-1 pl-7 flex gap-3 items-center justify-start'>
-            <User2Icon className='border rounded-full h-7 w-7' />
-            <span className='text-md text-gray-500 font-semibold font-roboto'>Agnish Bhattacharya</span>
+            <User2Icon className='border-[2px] rounded-full h-7 w-7 text-white' />
+            <span className='text-md text-gray-400 font-semibold font-roboto'>Agnish Bhattacharya</span>
         </div>
         <div className='pl-7 justify-start flex flex-col'>
-          <div className='text-[60px] text-gray-600 font-[100] font-regular'>{date.getHours()}<span className='relative top-[-4px]'>:</span>{date.getMinutes()}</div>
-          <div className='font-roboto text-lg pl-1 font-semibold text-gray-600'>{days[date.getDay()]}, {months[date.getMonth()]} {date.getDate()}, {date.getFullYear()}</div>
+          <div className='text-[60px] text-[#E78284] font-[100] font-regular'>{date.getHours()}<span className='relative top-[-4px]'>:</span>{date.getMinutes()}</div>
+          <div className='font-roboto text-lg pl-1 font-semibold text-[#E78284]'>{days[date.getDay()]}, {months[date.getMonth()]} {date.getDate()}, {date.getFullYear()}</div>
         </div>
         <PomodoroClock />
         <Spotify />

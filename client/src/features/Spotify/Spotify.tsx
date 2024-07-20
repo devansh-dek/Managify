@@ -58,7 +58,7 @@ function Spotify() {
 
       <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
         <PopoverTrigger>
-          <Button variant='default' className='bg-gray-700 text-white rounded-[10px] hover:text-gray-700 font-semibold'>Change playlist</Button>
+          <Button variant='default' className='bg-gray-700 text-white rounded-[10px] hover:text-gray-900 font-semibold'>Change playlist</Button>
         </PopoverTrigger>
         <PopoverContent className='p-0 border-none'>
           <div className='bg-gray-700 rounded-[10px]'>
