@@ -1,13 +1,13 @@
 import PomodoroClock from "./features/Pomodro/Pomodro.tsx"
+import Sidebar from "./sections/Sidebar.tsx"
 
 function App() {
   return (
-    <>
-      <div className="font-bold text-lg">Hello world</div>
+    <div className='h-screen w-screen'>
 
-      <PomodoroClock></PomodoroClock>
+      <Sidebar />
 
-    </>
+    </div>
   )
 }
 

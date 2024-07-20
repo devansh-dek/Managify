@@ -49,34 +49,31 @@ const PomodoroClock: React.FC = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-            <div className='flex flex-row justify-evenly items-center'>
-                <div className={`m-2 p-2 cursor-pointer  rounded-xl ${tab === 1 ? 'border-4 border-blue-500 bg-gray-300' : 'border-2 border-gray-300'
+        <div className="flex flex-col items-center justify-center min-h-[100px] w-[350px] border m-5 rounded-[10px] p-5">
+            <div className='flex flex-row justify-evenly items-center font-roboto font-semibold text-sm text-center'>
+                <div className={`m-2 p-2 cursor-pointer  rounded-xl ${tab === 1 ? 'bg-gray-400 text-white' : 'border-gray-300'
                     }`} onClick={(e) => setPomodro(1)} >
-                    POMODRO
+                    Pomodoro
                 </div>
-                <div className={`m-2 p-2 cursor-pointer rounded-xl ${tab === 2 ? 'border-4 border-blue-500 bg-gray-300' : 'border-2 border-gray-300'
+                <div className={`m-2 p-2 cursor-pointer rounded-xl ${tab === 2 ? 'bg-gray-400 text-white' : 'border-gray-300'
                     }`} onClick={(e) => setPomodro(2)} >
-                    SHORT BREAK
+                    Short Break
                 </div>
-                <div className={`m-2 p-2 cursor-pointer rounded-xl ${tab === 3 ? 'border-4 border-blue-500 bg-gray-300' : 'border-2 border-gray-300'
+                <div className={`m-2 p-2 cursor-pointer rounded-xl ${tab === 3 ? 'bg-gray-400 text-white' : 'border-gray-300'
                     }`} onClick={(e) => setPomodro(3)} >
-                    LONG BREAK
+                    Long Break
                 </div>
             </div >
-            <h1 className="text-3xl font-bold mb-2">
-                {isBreak ? 'Break Time!' : 'Work Time!'}
-            </h1>
-            <h2 className="text-6xl font-mono mb-4">{formatTime(time)}</h2>
+            <h2 className="text-[60px] font-[500] text-gray-600 font-roboto mb-4">{formatTime(time)}</h2>
             <div className="flex space-x-4">
                 <button
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className="px-4 py-2 bg-gray-700 text-white font-roboto font-semibold rounded-[8px] hover:bg-white hover:text-gray-700 transition-all"
                     onClick={() => setIsActive(!isActive)}
                 >
                     {isActive ? 'Pause' : 'Start'}
                 </button>
                 <button
-                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                    className="px-4 py-2 bg-red-600 text-white rounded-[8px] hover:bg-white hover:text-red-600 transition-all font-roboto font-semibold"
                     onClick={() => setTime(isBreak ? 300 : 1500)}
                 >
                     Reset
