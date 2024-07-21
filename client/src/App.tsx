@@ -8,9 +8,9 @@ import CompanySection from "./sections/CompanySection.tsx";
 
 function App() {
   return (
-    <div className="h-screen w-screen flex overflow-x-hidden bg-[#303446]">
+    <div className="h-screen w-screen flex overflow-x-hidden bg-[#292c3c] gap-2">
       <Sidebar />
-      <PersonalSection />
+
     </div>
   );
 }

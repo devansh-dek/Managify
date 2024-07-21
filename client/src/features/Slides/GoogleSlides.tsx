@@ -1,16 +1,21 @@
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface propsObj {
   src: string;
 }
 
 function GoogleSlides(props: propsObj) {
+  const st: string = props.src;
+  const [slideLink, setSlideLink] = useState<string>(st);
+  useEffect(() => {
+    setSlideLink(props.src);
+  }, [props])
   return (
     <div className="m-5 mt-0 mx-2">
       <iframe
         className="rounded-[15px] "
-        src={props.src}
+        src={slideLink}
         frameBorder="0"
         width="300"
         height="200"
