@@ -35,29 +35,35 @@ Welcome to the Managify Chrome extension! This extension replaces your browser's
 
 ## Installation
 
-1. Clone the repository:
+### 1. Clone the repository:
 
 ```bash
 git clone https://github.com/devansh-dek/Managify.git
 cd Managitfy
-cd client
-npm install
-npm start dev
 ```
-Then run server on other terminal
+
+### 2.Run server
 ```bash
 cd server
 npm install
 npm start
 ```
-Create a .env file in server
+### 3.Create a .env file in server
 ```bash
 cd server
 touch .env
 ```
-add following in .env
-```json
+### 4.Add following in .env
+```.env
 MONGO_DB_URI = YOUR URI
 JWT_SECRET_KEY = YOUR SECRET KEY
 PORT = PORT
 ```
+### 5.Run client
+```bash
+cd client
+npm install
+npm start dev
+```
+
+
