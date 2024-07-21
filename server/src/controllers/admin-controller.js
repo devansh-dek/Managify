@@ -40,7 +40,7 @@ const createAdmin = async (req, res) => {
             email: req.body.email
         }
         const response = await adminService.createadmin(admin);
-        return res.status(500).json({
+        return res.status(200).json({
             data: {},
             success: true,
             admin: response,
