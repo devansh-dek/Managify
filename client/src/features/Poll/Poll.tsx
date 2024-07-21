@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { userDetailsAtom } from '@/atoms/userDetails';
+import { isAdminAtom } from '@/atoms/isAdmin';
 
-// Define types for Poll and Option
 interface Option {
     _id: string;
     text: string;
@@ -15,11 +17,13 @@ interface Poll {
 }
 
 const Poll: React.FC = () => {
+    const [userDetails] = useRecoilState(userDetailsAtom);
+    const [isAdmin] = useRecoilState(isAdminAtom);
+
     const [polls, setPolls] = useState<Poll[]>([]);
     const [newPollQuestion, setNewPollQuestion] = useState<string>('');
     const [newOptions, setNewOptions] = useState<{ [key: string]: string }>({});
 
-    // Fetch all polls
     const fetchPolls = async () => {
         try {
             const response = await axios.get<{ polls: Poll[] }>('http://localhost:3000/api/v1/polls');
@@ -33,7 +37,6 @@ const Poll: React.FC = () => {
         fetchPolls();
     }, []);
 
-    // Create a new poll
     const handleCreatePoll = async () => {
         try {
             const response = await axios.post<Poll>('http://localhost:3000/api/v1/polls', { question: newPollQuestion });
@@ -44,21 +47,19 @@ const Poll: React.FC = () => {
         }
     };
 
-    // Add an option to a poll
     const handleAddOption = async (pollId: string) => {
         try {
             const newOptionText = newOptions[pollId] || '';
-            if (!newOptionText) return; // Prevent adding empty options
+            if (!newOptionText) return;
 
             const response = await axios.post<Poll>(`http://localhost:3000/api/v1/polls/${pollId}/options`, { text: newOptionText });
             setPolls(polls.map(poll => poll._id === pollId ? response.data : poll));
-            setNewOptions(prev => ({ ...prev, [pollId]: '' })); // Clear input after adding
+            setNewOptions(prev => ({ ...prev, [pollId]: '' }));
         } catch (error) {
             console.error('Error adding option:', error);
         }
     };
 
-    // Vote on an option
     const handleVote = async (pollId: string, optionId: string) => {
         try {
             await axios.post(`http://localhost:3000/api/v1/polls/${pollId}/options/${optionId}/vote`);
@@ -68,7 +69,6 @@ const Poll: React.FC = () => {
         }
     };
 
-    // Delete a poll
     const handleDeletePoll = async (pollId: string) => {
         try {
             await axios.delete(`http://localhost:3000/api/v1/polls/${pollId}`);
@@ -78,7 +78,6 @@ const Poll: React.FC = () => {
         }
     };
 
-    // Delete an option
     const handleDeleteOption = async (pollId: string, optionId: string) => {
         try {
             await axios.delete(`http://localhost:3000/api/v1/polls/${pollId}/options/${optionId}`);
@@ -96,22 +95,24 @@ const Poll: React.FC = () => {
     return (
         <div className="p-6 max-w-4xl mx-auto bg-gray-800 rounded-lg shadow-lg">
             <h1 className="text-3xl font-bold mb-6 text-center text-white">Polls</h1>
-            <div className="mb-6 p-4 bg-gray-900 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold mb-4 text-white">Create a New Poll</h2>
-                <input
-                    type="text"
-                    value={newPollQuestion}
-                    onChange={(e) => setNewPollQuestion(e.target.value)}
-                    placeholder="Enter poll question"
-                    className="border border-gray-600 bg-gray-700 text-white p-2 rounded w-full mb-4"
-                />
-                <button
-                    onClick={handleCreatePoll}
-                    className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition"
-                >
-                    Create Poll
-                </button>
-            </div>
+            {isAdmin && (
+                <div className="mb-6 p-4 bg-gray-900 rounded-lg shadow-md">
+                    <h2 className="text-xl font-semibold mb-4 text-white">Create a New Poll</h2>
+                    <input
+                        type="text"
+                        value={newPollQuestion}
+                        onChange={(e) => setNewPollQuestion(e.target.value)}
+                        placeholder="Enter poll question"
+                        className="border border-gray-600 bg-gray-700 text-white p-2 rounded w-full mb-4"
+                    />
+                    <button
+                        onClick={handleCreatePoll}
+                        className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition"
+                    >
+                        Create Poll
+                    </button>
+                </div>
+            )}
             <div>
                 <h2 className="text-xl font-semibold mb-4 text-white">Existing Polls</h2>
                 {polls.length > 0 ? (
@@ -121,7 +122,6 @@ const Poll: React.FC = () => {
                                 <h3 className="text-2xl font-semibold mb-2 text-white">{poll.question}</h3>
                                 <ul className="list-disc pl-5 mb-4 text-white">
                                     {poll.options.map(option => {
-                                        // Calculate the percentage for progress bar
                                         const totalVotes = poll.options.reduce((acc, opt) => acc + opt.votes, 0);
                                         const percentage = totalVotes > 0 ? (option.votes / totalVotes) * 100 : 0;
                                         return (
@@ -145,38 +145,44 @@ const Poll: React.FC = () => {
                                                     >
                                                         Vote
                                                     </button>
-                                                    <button
-                                                        onClick={() => handleDeleteOption(poll._id, option._id)}
-                                                        className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
-                                                    >
-                                                        Delete Option
-                                                    </button>
+                                                    {isAdmin && (
+                                                        <button
+                                                            onClick={() => handleDeleteOption(poll._id, option._id)}
+                                                            className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
+                                                        >
+                                                            Delete Option
+                                                        </button>
+                                                    )}
                                                 </div>
                                             </li>
                                         );
                                     })}
                                 </ul>
-                                <div className="mb-4">
-                                    <input
-                                        type="text"
-                                        value={newOptions[poll._id] || ''}
-                                        onChange={(e) => setNewOptions(prev => ({ ...prev, [poll._id]: e.target.value }))}
-                                        placeholder="Add new option"
-                                        className="border border-gray-600 bg-gray-700 text-white p-2 rounded w-full mb-4"
-                                    />
+                                {isAdmin && (
+                                    <div className="mb-4">
+                                        <input
+                                            type="text"
+                                            value={newOptions[poll._id] || ''}
+                                            onChange={(e) => setNewOptions(prev => ({ ...prev, [poll._id]: e.target.value }))}
+                                            placeholder="Add new option"
+                                            className="border border-gray-600 bg-gray-700 text-white p-2 rounded w-full mb-4"
+                                        />
+                                        <button
+                                            onClick={() => handleAddOption(poll._id)}
+                                            className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition"
+                                        >
+                                            Add Option
+                                        </button>
+                                    </div>
+                                )}
+                                {isAdmin && (
                                     <button
-                                        onClick={() => handleAddOption(poll._id)}
-                                        className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition"
+                                        onClick={() => handleDeletePoll(poll._id)}
+                                        className="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900 transition"
                                     >
-                                        Add Option
+                                        Delete Poll
                                     </button>
-                                </div>
-                                <button
-                                    onClick={() => handleDeletePoll(poll._id)}
-                                    className="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900 transition"
-                                >
-                                    Delete Poll
-                                </button>
+                                )}
                             </div>
                         ))}
                     </div>
