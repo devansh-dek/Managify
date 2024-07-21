@@ -13,13 +13,6 @@ interface srcObj {
 }
 
 const GoogleSlides = ({ src }: srcObj) => {
-  const wrapperStyle = {
-    position: "relative",
-    overflow: "hidden",
-    width: "640px",
-    height: "360px",
-  };
-
   const iframeStyle = {
     position: "absolute",
     top: "-0px",
@@ -29,7 +22,7 @@ const GoogleSlides = ({ src }: srcObj) => {
   };
 
   return (
-    <div className="relative overflow-hidden w-[320px] h-[180px] p-10">
+    <div className="relative overflow-hidden w-[320px] h-[180px] mx-3 p-10">
       <iframe
         src={src}
         frameBorder="0"
@@ -73,18 +66,18 @@ function SlideSection() {
   }
 
   return (
-    <div className="flex flex-wrap p-4  bg-[#232634]  rounded-[20px] px-6 w-[65%] m-[25px] ">
+    <div className="flex flex-col p-4 bg-[#232634] mx-5  rounded-[20px] px-6 w-[450px] m-[25px] ">
       <div className="w-full flex flex-wrap text-lg text-white font-regular  p-3">
         <img src={Icon} className="h-12" alt="Google Slides Icon" />
-        <p className="text-white text-xl pt-[12px] font-[500] ">
-          Google Calender
+        <p className="text-white text-xl mb-10 pt-[12px] font-[500] ">
+          My Slides
         </p>
       </div>
       {slides.map((slideLink, i) => (
         <div key={i}>
           <GoogleSlides src={slideLink} />
           <Button
-            className="bg-[#e78284] ml-5 mb-5 text-white rounded-[10px] hover:text-[#838ba7] hover:bg-white font-semibold"
+            className="bg-[#e78284] ml-5 my-5 text-white rounded-[10px] hover:text-[#838ba7] hover:bg-white font-semibold"
             onClick={() => deleteSlide(i)}
           >
             Delete Slide
