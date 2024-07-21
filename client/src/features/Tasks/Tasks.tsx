@@ -68,14 +68,14 @@ function Tasks() {
   }
 
   return (
-    <div className="max-h-[640px] h-fit m-0 mx-1 bg-[#232634] w-[60%] rounded-[20px] p-5">
+    <div className="h-[640px] my-3 mx-1 bg-[#232634] w-[400px] rounded-[20px] p-5">
       <div className="flex gap-2 items-center mb-3">
         <img src={Icon} className="h-10" />
-        <span className="text-white text-xl font-[500]">TODO List</span>
+        <span className="text-white text-xl font-[500]">Todo List</span>
       </div>
-      <div className="w-[100px] flex mb-3">
+      <div className="w-[350px] flex mb-3 justify-between items-center">
         <input
-          className="rounded-[15px] font-roboto text-sm font-regular  pr-[85px] px-3 py-0"
+          className="rounded-[20px] font-roboto w-[250px] h-10 text-sm font-regular px-3 py-0"
           placeholder="Enter your task"
           value={task}
           onChange={(e) => {
@@ -83,7 +83,7 @@ function Tasks() {
           }}
         />
         <Button
-          className="flex left-[-80px] rounded-[20px] bg-red-400 text-sm font-roboto px-5 ml-[50px] hover:bg-white hover:text-gray-400"
+          className="flex left-[-80px] rounded-[20px] bg-red-400 text-sm font-roboto px-5 ml-[10px] hover:bg-white hover:text-gray-400"
           onClick={addTask}
         >
           Add
@@ -91,7 +91,7 @@ function Tasks() {
       </div>
       <ul>
         {!tasks?.length ? (
-          <div className="p-5 font-roboto font-semibold text-xs text-gray-400">
+          <div className="p-5 font-roboto font-semibold text-sm text-gray-400">
             No tasks today
           </div>
         ) : (
@@ -119,8 +119,8 @@ function Tasks() {
                 <div
                   className={
                     !task.isCompleted
-                      ? "max-w-[100px] py-3 font-regular text-xs font-roboto text-white"
-                      : "max-w-[100px] py-3 font-regular text-xs font-roboto text-gray-400 text line-through"
+                      ? "max-w-[100px] py-3 font-regular text-sm font-roboto text-white"
+                      : "max-w-[100px] py-3 font-regular text-sm font-roboto text-gray-400 text line-through"
                   }
                   onClick={() => {
                     completeTask(i);
