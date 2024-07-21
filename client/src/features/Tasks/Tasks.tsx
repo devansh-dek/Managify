@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle2, Circle, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Icon from "../../assets/check-list.png";
 
 interface taskObj {
   title: string;
@@ -68,10 +69,13 @@ function Tasks() {
 
   return (
     <div className="max-h-[640px] h-fit m-0 mx-1 bg-[#232634] w-[60%] rounded-[20px] p-5">
-      <h1 className="text-[#e78284] text-xl p-3">TO DO</h1>
+      <div className="flex gap-2 items-center mb-3">
+        <img src={Icon} className="h-10" />
+        <span className="text-white text-xl font-[500]">TODO List</span>
+      </div>
       <div className="w-[100px] flex mb-3">
         <input
-          className="rounded-[15px] font-roboto text-sm font-regular pr-[85px] px-3 py-0"
+          className="rounded-[15px] font-roboto text-sm font-regular  pr-[85px] px-3 py-0"
           placeholder="Enter your task"
           value={task}
           onChange={(e) => {
@@ -79,7 +83,7 @@ function Tasks() {
           }}
         />
         <Button
-          className="flex left-[-80px] rounded-[20px] bg-red-400 text-sm font-roboto px-5"
+          className="flex left-[-80px] rounded-[20px] bg-red-400 text-sm font-roboto px-5 ml-[50px] hover:bg-white hover:text-gray-400"
           onClick={addTask}
         >
           Add

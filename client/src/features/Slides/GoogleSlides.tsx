@@ -12,7 +12,7 @@ function GoogleSlides(props: propsObj) {
     setSlideLink(props.src);
   }, [props]);
   return (
-    <div className="m-5 mt-0 mx-6 ">
+    <div className="m-5 mt-0 mx-6">
       <iframe
         className="rounded-[15px] "
         src={slideLink}
