@@ -20,6 +20,15 @@ class AnnoucementService {
             throw error;
         }
     }
+    async view() {
+        try {
+            const slideLink = await annoucerepo.getAll();
+            return slideLink;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
 
 }
 
