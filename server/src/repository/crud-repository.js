@@ -43,7 +43,7 @@ class CrudRepository {
 
     async getAll() {
         try {
-            const result = await this.model.find({}).populate({ path: 'user' }).populate({ path: 'likeable' });
+            const result = await this.model.find({});
             return result;
         } catch (error) {
             console.log("Something went wrong in the crud Repository");
