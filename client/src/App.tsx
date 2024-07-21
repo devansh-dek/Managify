@@ -5,11 +5,19 @@ import Sidebar from "./sections/Sidebar.tsx";
 import { Suspense } from "react";
 
 import GoogleCalendar from "./features/Calendar/GoogleCalendar.tsx";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 95f22bb (On branch master)
 import SlideSection from "./features/Slides/SlideSection.tsx";
 
 import Annoucements from "./features/Annoucements/Annoucements.tsx";
 
+<<<<<<< HEAD
 
+=======
+import Sidebar from "./sections/Sidebar";
+>>>>>>> 95f22bb (On branch master)
 import HeadingSection from "./sections/HeadingSection";
 import PersonalSection from "./sections/PersonalSection";
 import CompanySection from "./sections/CompanySection";

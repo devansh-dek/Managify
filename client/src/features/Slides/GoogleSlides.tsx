@@ -10,9 +10,9 @@ function GoogleSlides(props: propsObj) {
   const [slideLink, setSlideLink] = useState<string>(st);
   useEffect(() => {
     setSlideLink(props.src);
-  }, [props])
+  }, [props]);
   return (
-    <div className="m-5 mt-0 mx-2">
+    <div className="m-5 mt-0 mx-6 ">
       <iframe
         className="rounded-[15px] "
         src={slideLink}
