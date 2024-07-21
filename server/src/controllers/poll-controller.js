@@ -121,6 +121,16 @@ const deleteOption = async (req, res) => {
         res.status(500).json({ msg: err.message });
     }
 };
+const getAllPolls = async (req, res) => {
+    try {
+        // Fetch all polls from the database
+        const polls = await Poll.find();
 
+        // Send the fetched polls in the response
+        res.status(200).json({ polls });
+    } catch (err) {
+        res.status(500).json({ msg: err.message });
+    }
+};
 
-module.exports = { createPoll, addOption, voteOption, getPoll, deletePoll, deleteOption };
+module.exports = { createPoll, addOption, voteOption, getPoll, deletePoll, deleteOption, getAllPolls };
