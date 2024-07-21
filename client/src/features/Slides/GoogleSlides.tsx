@@ -1,16 +1,23 @@
-import { Button } from '@/components/ui/button'
-import React from 'react';
+import { Button } from "@/components/ui/button";
+import React from "react";
 
 interface propsObj {
-    src: string
+  src: string;
 }
 
 function GoogleSlides(props: propsObj) {
   return (
-    <div className='m-5 mt-0 mx-2'>
-        <iframe className='rounded-[20px] shadow-widget' src={props.src} frameBorder="0" width="300" height="200" allowFullScreen></iframe>
+    <div className="m-5 mt-0 mx-2">
+      <iframe
+        className="rounded-[15px] "
+        src={props.src}
+        frameBorder="0"
+        width="300"
+        height="200"
+        allowFullScreen
+      ></iframe>
     </div>
-  )
+  );
 }
 
 export default GoogleSlides;
