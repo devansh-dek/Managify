@@ -44,9 +44,8 @@ cd client
 npm install
 npm start dev
 ```
-Then run server
+Then run server on other terminal
 ```bash
-cd ..
 cd server
 npm install
 npm start```
