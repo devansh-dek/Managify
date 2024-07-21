@@ -5,20 +5,17 @@ import React, { Suspense } from 'react'
 
 function PersonalSection() {
     return (
-        <>
-            <h1>Perosnal sections</h1>
-            <div className="flex flex-col w-screen overflow-y-scroll pl-[400px] overflow-x-hidden">
+        <div className='flex flex-col'>
+            <h1>Perosnal section</h1>
+            <div className=" w-screen overflow-y-scroll overflow-x-hidden">
 
                 <Suspense>
                     <SlideSection />
                 </Suspense>
-                <div className='flex'>
-                    <GoogleCalendar />
-                    <Tasks />
-                </div>
+                <GoogleCalendar />
             </div>
 
-        </>
+        </div>
 
 
     )
