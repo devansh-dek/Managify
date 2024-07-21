@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Button } from "@/components/ui/button";
 
@@ -11,15 +11,21 @@ import {
 } from "@/components/ui/popover";
 
 function Spotify() {
-  const [spotifyLink, setSpotifyLink] = useState('https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M?si=a7b105a5efab4fc3');
-  const [embedLink, setEmbedLink] = useState('https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator');
+  const [spotifyLink, setSpotifyLink] = useState(
+    "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M?si=a7b105a5efab4fc3",
+  );
+  const [embedLink, setEmbedLink] = useState(
+    "https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator",
+  );
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   const makeEmbedLink = (link: string) => {
     try {
-      const linkparts = link.split('playlist');
-      const linkend = linkparts[1].split('si');
-      return linkparts[0] + 'embed/playlist' + linkend[0] + 'utm_source=generator';
+      const linkparts = link.split("playlist");
+      const linkend = linkparts[1].split("si");
+      return (
+        linkparts[0] + "embed/playlist" + linkend[0] + "utm_source=generator"
+      );
     } catch (error) {
       console.error(error);
       toast("Enter Valid Playlist Link!");
@@ -32,8 +38,7 @@ function Spotify() {
       const newEmbedLink = makeEmbedLink(spotifyLink);
       if (newEmbedLink !== embedLink) {
         setEmbedLink(newEmbedLink);
-      }
-      else {
+      } else {
         // toast("Enter Valid Playlist Link!");
       }
       setIsPopoverOpen(false);
@@ -43,32 +48,41 @@ function Spotify() {
   };
 
   return (
-    <div className='flex flex-col items-center'>
-
+    <div className="flex flex-col items-center">
       <iframe
-        className='rounded-[12px] m-6 mt-0 mb-3'
+        className="rounded-[8px] m-0 mt-0 mb-3 "
         src={embedLink}
         width="87%"
-        height="152"
+        height="170px"
         frameBorder="0"
         allowFullScreen
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
-      ></iframe> 
+      ></iframe>
 
       <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
         <PopoverTrigger>
-          <Button variant='default' className='bg-gray-700 text-white rounded-[10px] hover:text-gray-900 font-semibold'>Change playlist</Button>
+          <Button
+            variant="default"
+            className="bg-[#ca9ee6] text-white rounded-[10px] hover:text-gray-900 hover:bg-grey-500 font-semibold"
+          >
+            Change playlist
+          </Button>
         </PopoverTrigger>
-        <PopoverContent className='p-0 border-none'>
-          <div className='bg-gray-700 rounded-[10px]'>
+        <PopoverContent className="p-0 border-none">
+          <div className="bg-gray-700 rounded-[10px]">
             <input
-              className='m-5 border bg-gray-500 px-5 py-2 rounded-[10px]'
-              placeholder='Enter the playlist link'
+              className="m-5 border bg-gray-500 hover:text-grey-900 hover:bg-white  px-5 py-2 rounded-[10px]"
+              placeholder="Enter the playlist link"
               value={spotifyLink}
               onChange={(e) => setSpotifyLink(e.target.value)}
             />
-            <Button onClick={changePlayList} className=' bg-green-500 text-white rounded-[10px]'>Update Playlist</Button>
+            <Button
+              onClick={changePlayList}
+              className=" bg-[#a6d189] text-grey-500 rounded-[10px]"
+            >
+              Update Playlist
+            </Button>
           </div>
         </PopoverContent>
       </Popover>
