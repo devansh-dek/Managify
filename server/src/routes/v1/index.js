@@ -13,6 +13,6 @@ router.get('/isadmin', AdminController.isAdmin);
 router.post('/createadmin', AdminController.createAdmin);
 router.delete('/deleteslidelink', slidelinkController.deleteAll);
 router.post('/createslidelink', slidelinkController.create);
-
+router.get('/getslidelink', slidelinkController.viewLink);
 
 module.exports = router;
