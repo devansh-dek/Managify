@@ -5,12 +5,14 @@ import SlideSection from "./features/Slides/SlideSection.tsx";
 
 import PersonalSection from "./sections/PersonalSection.tsx";
 import CompanySection from "./sections/CompanySection.tsx";
+import Annoucements from "./features/Annoucements/Annoucements.tsx";
 
 function App() {
   return (
     <div className="h-screen w-screen flex overflow-x-hidden bg-[#292c3c] gap-2">
       <Sidebar />
-
+      <CompanySection />
+      {/* <PersonalSection /> */}
     </div>
   );
 }
