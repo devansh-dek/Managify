@@ -14,6 +14,7 @@ interface Poll {
     _id: string;
     question: string;
     options: Option[];
+    voted: boolean; // Track if the user has voted
 }
 
 const Poll: React.FC = () => {
@@ -38,6 +39,7 @@ const Poll: React.FC = () => {
     }, []);
 
     const handleCreatePoll = async () => {
+        if (newPollQuestion.trim() === '') return;
         try {
             const response = await axios.post<Poll>('http://localhost:3000/api/v1/polls', { question: newPollQuestion });
             setPolls([...polls, response.data]);
@@ -48,10 +50,9 @@ const Poll: React.FC = () => {
     };
 
     const handleAddOption = async (pollId: string) => {
+        const newOptionText = newOptions[pollId] || '';
+        if (!newOptionText) return;
         try {
-            const newOptionText = newOptions[pollId] || '';
-            if (!newOptionText) return;
-
             const response = await axios.post<Poll>(`http://localhost:3000/api/v1/polls/${pollId}/options`, { text: newOptionText });
             setPolls(polls.map(poll => poll._id === pollId ? response.data : poll));
             setNewOptions(prev => ({ ...prev, [pollId]: '' }));
@@ -61,8 +62,20 @@ const Poll: React.FC = () => {
     };
 
     const handleVote = async (pollId: string, optionId: string) => {
+        if (userDetails.email === 'none') {
+            alert('You must be logged in to vote.');
+            return;
+        }
+
+        const poll = polls.find(p => p._id === pollId);
+        if (poll?.voted) {
+            alert('You have already voted on this poll.');
+            return;
+        }
+
         try {
-            await axios.post(`http://localhost:3000/api/v1/polls/${pollId}/options/${optionId}/vote`);
+            await axios.post(`http://localhost:3000/api/v1/polls/${pollId}/options/${optionId}/vote`, { email: userDetails.email });
+            setPolls(polls.map(p => p._id === pollId ? { ...p, voted: true } : p));
             fetchPolls();
         } catch (error) {
             console.error('Error voting on option:', error);
@@ -141,7 +154,8 @@ const Poll: React.FC = () => {
                                                 <div className="mt-2 flex space-x-2">
                                                     <button
                                                         onClick={() => handleVote(poll._id, option._id)}
-                                                        className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition"
+                                                        className={`bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition ${poll.voted ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                                        disabled={poll.voted}
                                                     >
                                                         Vote
                                                     </button>
