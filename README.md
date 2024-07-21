@@ -40,3 +40,13 @@ Welcome to the Managify Chrome extension! This extension replaces your browser's
 ```bash
 git clone https://github.com/devansh-dek/Managify.git
 cd Managitfy
+cd client
+npm install
+npm start dev
+```
+Then run server
+```bash
+cd ..
+cd server
+npm install
+npm start```
