@@ -17,8 +17,7 @@ interface Poll {
 const Poll: React.FC = () => {
     const [polls, setPolls] = useState<Poll[]>([]);
     const [newPollQuestion, setNewPollQuestion] = useState<string>('');
-    const [newOptionText, setNewOptionText] = useState<string>('');
-    const [selectedPollId, setSelectedPollId] = useState<string | null>(null);
+    const [newOptions, setNewOptions] = useState<{ [key: string]: string }>({});
 
     // Fetch all polls
     const fetchPolls = async () => {
@@ -48,9 +47,12 @@ const Poll: React.FC = () => {
     // Add an option to a poll
     const handleAddOption = async (pollId: string) => {
         try {
+            const newOptionText = newOptions[pollId] || '';
+            if (!newOptionText) return; // Prevent adding empty options
+
             const response = await axios.post<Poll>(`http://localhost:3000/api/v1/polls/${pollId}/options`, { text: newOptionText });
             setPolls(polls.map(poll => poll._id === pollId ? response.data : poll));
-            setNewOptionText('');
+            setNewOptions(prev => ({ ...prev, [pollId]: '' })); // Clear input after adding
         } catch (error) {
             console.error('Error adding option:', error);
         }
@@ -92,32 +94,32 @@ const Poll: React.FC = () => {
     };
 
     return (
-        <div className="p-6 max-w-4xl mx-auto bg-gray-100 rounded-lg shadow-lg">
-            <h1 className="text-3xl font-bold mb-6 text-center">Polls</h1>
-            <div className="mb-6 p-4 bg-white rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold mb-4">Create a New Poll</h2>
+        <div className="p-6 max-w-4xl mx-auto bg-gray-800 rounded-lg shadow-lg">
+            <h1 className="text-3xl font-bold mb-6 text-center text-white">Polls</h1>
+            <div className="mb-6 p-4 bg-gray-900 rounded-lg shadow-md">
+                <h2 className="text-xl font-semibold mb-4 text-white">Create a New Poll</h2>
                 <input
                     type="text"
                     value={newPollQuestion}
                     onChange={(e) => setNewPollQuestion(e.target.value)}
                     placeholder="Enter poll question"
-                    className="border border-gray-300 p-2 rounded w-full mb-4"
+                    className="border border-gray-600 bg-gray-700 text-white p-2 rounded w-full mb-4"
                 />
                 <button
                     onClick={handleCreatePoll}
-                    className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                    className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition"
                 >
                     Create Poll
                 </button>
             </div>
             <div>
-                <h2 className="text-xl font-semibold mb-4">Existing Polls</h2>
+                <h2 className="text-xl font-semibold mb-4 text-white">Existing Polls</h2>
                 {polls.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {polls.map(poll => (
-                            <div key={poll._id} className="border border-gray-300 rounded-lg p-4 bg-white shadow-md">
-                                <h3 className="text-2xl font-semibold mb-2">{poll.question}</h3>
-                                <ul className="list-disc pl-5 mb-4">
+                            <div key={poll._id} className="border border-gray-600 rounded-lg p-4 bg-gray-900 shadow-md">
+                                <h3 className="text-2xl font-semibold mb-2 text-white">{poll.question}</h3>
+                                <ul className="list-disc pl-5 mb-4 text-white">
                                     {poll.options.map(option => {
                                         // Calculate the percentage for progress bar
                                         const totalVotes = poll.options.reduce((acc, opt) => acc + opt.votes, 0);
@@ -128,9 +130,9 @@ const Poll: React.FC = () => {
                                                     <span className="font-medium">{option.text}</span>
                                                     <span className="font-medium">{option.votes} votes</span>
                                                 </div>
-                                                <div className="w-full bg-gray-200 rounded-full mt-1">
+                                                <div className="w-full bg-gray-700 rounded-full mt-1">
                                                     <div
-                                                        className="bg-blue-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                                                        className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                                                         style={{ width: `${percentage}%` }}
                                                     >
                                                         {percentage.toFixed(2)}%
@@ -139,13 +141,13 @@ const Poll: React.FC = () => {
                                                 <div className="mt-2 flex space-x-2">
                                                     <button
                                                         onClick={() => handleVote(poll._id, option._id)}
-                                                        className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+                                                        className="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700 transition"
                                                     >
                                                         Vote
                                                     </button>
                                                     <button
                                                         onClick={() => handleDeleteOption(poll._id, option._id)}
-                                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                                                        className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 transition"
                                                     >
                                                         Delete Option
                                                     </button>
@@ -157,21 +159,21 @@ const Poll: React.FC = () => {
                                 <div className="mb-4">
                                     <input
                                         type="text"
-                                        value={newOptionText}
-                                        onChange={(e) => setNewOptionText(e.target.value)}
+                                        value={newOptions[poll._id] || ''}
+                                        onChange={(e) => setNewOptions(prev => ({ ...prev, [poll._id]: e.target.value }))}
                                         placeholder="Add new option"
-                                        className="border border-gray-300 p-2 rounded w-full mb-4"
+                                        className="border border-gray-600 bg-gray-700 text-white p-2 rounded w-full mb-4"
                                     />
                                     <button
                                         onClick={() => handleAddOption(poll._id)}
-                                        className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition"
+                                        className="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition"
                                     >
                                         Add Option
                                     </button>
                                 </div>
                                 <button
                                     onClick={() => handleDeletePoll(poll._id)}
-                                    className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800 transition"
+                                    className="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900 transition"
                                 >
                                     Delete Poll
                                 </button>
@@ -179,7 +181,7 @@ const Poll: React.FC = () => {
                         ))}
                     </div>
                 ) : (
-                    <p className="text-center">No polls available.</p>
+                    <p className="text-center text-white">No polls available.</p>
                 )}
             </div>
         </div>

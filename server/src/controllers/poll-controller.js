@@ -2,7 +2,10 @@ const Poll = require('../models/poll');
 
 // Create a new poll
 const createPoll = async (req, res) => {
-    const { question, options } = req.body;
+    let { question, options } = req.body;
+    if (!options) {
+        options = [];
+    }
 
     if (options.length > 4) {
         return res.status(400).json({ msg: 'Cannot have more than 4 options' });
