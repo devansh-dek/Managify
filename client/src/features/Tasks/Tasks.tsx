@@ -67,7 +67,8 @@ function Tasks() {
   }
 
   return (
-    <div className="max-h-[640px] h-fit m-5 mx-1 bg-[#232634] w-full rounded-[20px] p-5">
+    <div className="max-h-[640px] h-fit m-0 mx-1 bg-[#232634] w-[60%] rounded-[20px] p-5">
+      <h1 className="text-[#e78284] text-xl p-3">TO DO</h1>
       <div className="w-[100px] flex mb-3">
         <input
           className="rounded-[15px] font-roboto text-sm font-regular pr-[85px] px-3 py-0"

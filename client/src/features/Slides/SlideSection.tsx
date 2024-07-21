@@ -8,8 +8,12 @@ import {
 } from "@/components/ui/popover";
 import { toast } from "react-toastify";
 
-const GoogleSlides = ({ src }) => {
-  const wrapperStyle = {
+interface srcObj {
+  src: string
+}
+
+const GoogleSlides = ({ src }: srcObj) => {
+  const wrapperStyle= {
     position: "relative",
     overflow: "hidden",
     width: "640px",
@@ -18,14 +22,14 @@ const GoogleSlides = ({ src }) => {
 
   const iframeStyle = {
     position: "absolute",
-    top: "-40px",
-    left: "-60px",
-    width: "calc(100% + 120px)",
-    height: "calc(100% + 80px)",
+    top: "-0px",
+    left: "-30px",
+    width: "calc(100% + 60px)",
+    height: "calc(100% + 40px)",
   };
 
   return (
-    <div style={wrapperStyle}>
+    <div className="relative overflow-hidden w-[320px] h-[180px]">
       <iframe
         src={src}
         frameBorder="0"
@@ -62,14 +66,14 @@ function SlideSection() {
     setSlideLink("");
   }
 
-  function deleteSlide(index) {
+  function deleteSlide(index: number) {
     const updatedSlides = slides.filter((_, i) => i !== index);
     setSlides(updatedSlides);
     localStorage.setItem("slideLinks", JSON.stringify(updatedSlides));
   }
 
   return (
-    <div className="flex flex-wrap gap-2 bg-[#232634] m-2 rounded-[20px] px-4">
+    <div className="flex flex-wrap pl-4 bg-[#232634]  rounded-[20px] px-4 w-[65%] m-[25px]">
       <div className="w-full text-lg text-white font-regular font-roboto p-3">
         <img src={Icon} className="h-20" alt="Google Slides Icon" />
       </div>
