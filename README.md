@@ -38,5 +38,5 @@ Welcome to the Hakerz team's Chrome extension! This extension replaces your brow
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/hakerz-team/chrome-extension.git
-cd chrome-extension
+git clone https://github.com/devansh-dek/Managify.git
+cd Managitfy
