@@ -10,8 +10,8 @@ function CompanySection() {
         <div>
             {/* <CompanySlide /> */}
             <div className="flex flex-col w-screen overflow-y-scroll pl-[400px] overflow-x-hidden">
-                <Annoucements />
                 <h1>Company Section</h1>
+                <Annoucements />
             </div>
         </div>
     )

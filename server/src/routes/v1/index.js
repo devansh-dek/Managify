@@ -5,11 +5,11 @@ const AnnoucementController = require('../../controllers/annoucement-controller'
 const slidelinkController = require('../../controllers/slidelink-controller');
 const router = express.Router();
 router.post('/signup', UserController.signup);
-router.get('/login', UserController.login);
+router.post('/login', UserController.login);
 router.post('/createannoucement', AnnoucementController.create);
 router.get('/showannoucements', AnnoucementController.viewAnnoucements);
 router.delete('/delteannoucement/:id', AnnoucementController.deleteAnnoucement);
-router.get('/isadmin', AdminController.isAdmin);
+router.post('/isadmin', AdminController.isAdmin);
 router.post('/createadmin', AdminController.createAdmin);
 router.delete('/deleteslidelink', slidelinkController.deleteAll);
 router.post('/createslidelink', slidelinkController.create);

@@ -8,8 +8,12 @@ import {
 } from "@/components/ui/popover";
 import { toast } from "react-toastify";
 
-const GoogleSlides = ({ src }) => {
-  const wrapperStyle = {
+interface srcObj {
+  src: string
+}
+
+const GoogleSlides = ({ src }: srcObj) => {
+  const wrapperStyle= {
     position: "relative",
     overflow: "hidden",
     width: "640px",
@@ -62,7 +66,7 @@ function SlideSection() {
     setSlideLink("");
   }
 
-  function deleteSlide(index) {
+  function deleteSlide(index: number) {
     const updatedSlides = slides.filter((_, i) => i !== index);
     setSlides(updatedSlides);
     localStorage.setItem("slideLinks", JSON.stringify(updatedSlides));
