@@ -25,7 +25,6 @@ function CompanySlide() {
 
     return (
         <>
-            <h1>Hoole world</h1>
             <GoogleSlides src={"https://docs.google.com/presentation/d/e/2PACX-1vSB9lELIg7-K2TZxLSm9t6y-QfCcoiHKddf4SCxqUgWWcDVRhhjLg-l_3__INLaZt2l_u2cs6i7BtAm/embed?start=true&loop=true&delayms=3000"} />
         </>
     );
