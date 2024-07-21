@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the Hakerz team's Chrome extension! This extension replaces your browser's homepage with a dynamic, productivity-enhancing workspace. It features various sections and widgets designed to streamline your workflow and keep you connected with your team.
+Welcome to the Managify Chrome extension! This extension replaces your browser's homepage with a dynamic, productivity-enhancing workspace. It features various sections and widgets designed to streamline your workflow and keep you connected with your team.
 
 ## Features
 
