@@ -2,7 +2,6 @@ import { User2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import PomodoroClock from "@/features/Pomodro/Pomodro";
 import Spotify from "@/features/Spotify/Spotify";
-import Icon from "../assets/hyperverge_logo.png";
 
 const days = [
   "Monday",
@@ -40,10 +39,7 @@ function Sidebar() {
 
   return (
     <div className="rounded-r-lg h-full w-[400px] fixed z-20 bg-[#232634]">
-      <div className="pt-5 pb-1 pl-7 flex gap-3 items-center justify-start">
-        <img src={Icon} className="h-10 bg-transparent"></img>
-      </div>
-      <div className="pl-7 justify-start flex flex-col">
+      <div className="pl-7 pt-10 justify-start flex flex-col">
         <div className="text-[60px] text-[#E78284] font-[100] font-regular">
           {date.getHours()}
           <span className="relative top-[-4px]">:</span>

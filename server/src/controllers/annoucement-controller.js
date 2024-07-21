@@ -45,7 +45,29 @@ const deleteAnnoucement = async (req, res) => {
         });
     }
 }
+const viewAnnoucements = async (req, res) => {
+    try {
+        const response = await annoucementService.view();
+        console.log("our response is ", response);
+        return res.status(200).json({
+            data: response,
+            success: true,
+            message: 'annoucements fetched successfully',
+            error: {}
+        });
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Failed to fetch Annoucements',
+            error: error
+        });
+    }
+}
 module.exports = {
     create,
-    deleteAnnoucement
+    deleteAnnoucement,
+    viewAnnoucements
 }
