@@ -11,7 +11,6 @@ function App() {
     <div className="h-screen w-screen flex overflow-x-hidden bg-[#303446]">
       <Sidebar />
       <PersonalSection />
-      <CompanySection />
     </div>
   );
 }
