@@ -9,30 +9,15 @@ import {
 import { toast } from "react-toastify";
 
 const GoogleSlides = ({ src }) => {
-  const wrapperStyle = {
-    position: "relative",
-    overflow: "hidden",
-    width: "640px",
-    height: "360px",
-  };
-
-  const iframeStyle = {
-    position: "absolute",
-    top: "-40px",
-    left: "-60px",
-    width: "calc(100% + 120px)",
-    height: "calc(100% + 80px)",
-  };
-
   return (
-    <div style={wrapperStyle}>
+    <div className="relative overflow-hidden w-[400px] h-[260px]">
       <iframe
         src={src}
         frameBorder="0"
         allowFullScreen={true}
         mozallowfullscreen="true"
         webkitallowfullscreen="true"
-        style={iframeStyle}
+        className="absolute t-[-40px] l-[-60px] w-[calc(100%+120px)] h-[calc(100%+80px)]"
       />
     </div>
   );
