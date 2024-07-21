@@ -7,8 +7,9 @@ import React from 'react'
 function CompanySection() {
     return (
         <div>
-            <CompanySlide />
+            {/* <CompanySlide /> */}
 
+            <h1>Company Section</h1>
         </div>
     )
 }

@@ -6,7 +6,7 @@ import React, { Suspense } from 'react'
 function PersonalSection() {
     return (
         <>
-
+            <h1>Perosnal sections</h1>
             <div className="flex flex-col w-screen overflow-y-scroll pl-[400px] overflow-x-hidden">
 
                 <Suspense>
