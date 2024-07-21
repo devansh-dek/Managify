@@ -8,7 +8,7 @@ const isAdmin = async (req, res) => {
         }
         const isAdmin = await adminService.isAdmin(adminEmail);
         if (!isAdmin) {
-            return res.status(500).json({
+            return res.status(200).json({
                 data: {},
                 success: true,
                 isAdmin: false,
@@ -16,7 +16,7 @@ const isAdmin = async (req, res) => {
             });
         }
         else {
-            return res.status(500).json({
+            return res.status(200).json({
                 data: {},
                 success: true,
                 isAdmin: true,
@@ -40,7 +40,7 @@ const createAdmin = async (req, res) => {
             email: req.body.email
         }
         const response = await adminService.createadmin(admin);
-        return res.status(500).json({
+        return res.status(200).json({
             data: {},
             success: true,
             admin: response,
