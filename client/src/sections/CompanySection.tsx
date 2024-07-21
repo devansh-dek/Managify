@@ -1,8 +1,5 @@
-import Annoucements from "@/features/Annoucements/Annoucements";
 import Poll from "@/features/Poll/Poll";
-import CompanySlide from "@/features/Slides/CompanySlide";
 import SlideSection from "@/features/Slides/SlideSection";
-import React from "react";
 
 function CompanySection() {
     return (

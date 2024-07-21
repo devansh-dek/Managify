@@ -1,0 +1,9 @@
+{
+    "manifest_version": 3,
+    "name": "Managify",
+    "description": "Increase your productivity with our extension",
+    "version": "1.0",
+    "chrome_url_overrides" : {
+        "newtab": "dist/index.html"
+    }
+}

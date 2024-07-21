@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -17,7 +16,6 @@ import { z } from "zod";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -27,9 +25,6 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import {
   useRecoilState,
-  useRecoilStateLoadable,
-  useRecoilValue,
-  useRecoilValueLoadable,
 } from "recoil";
 import { userDetailsAtom } from "@/atoms/userDetails";
 import { isAdminAtom } from "@/atoms/isAdmin";
@@ -53,6 +48,7 @@ function Login() {
       .post("http://localhost:3000/api/v1/login", values)
       .then((res) => {
         setUserDetails(res.data?.data);
+        console.log(userDetails);
         axios
           .post("http://localhost:3000/api/v1/isadmin", {
             email: res.data?.data?.email,
@@ -60,6 +56,7 @@ function Login() {
           .then((res) => {
             console.log(res.data?.isAdmin);
             setIsAdmin(res.data?.isAdmin);
+            console.log(isAdmin);
           })
           .catch((err) => {
             console.log(err);

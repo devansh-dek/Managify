@@ -1,4 +1,3 @@
-import React from "react";
 import Icon from "../../assets/google-calendar.png";
 
 function GoogleCalendar() {

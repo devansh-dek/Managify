@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Icon from "../../assets/megaphone.png";
 interface Announcement {
   _id: string;

@@ -1,13 +1,3 @@
-
-
-
-import { Suspense } from "react";
-
-import GoogleCalendar from "./features/Calendar/GoogleCalendar.tsx";
-import SlideSection from "./features/Slides/SlideSection.tsx";
-
-import Annoucements from "./features/Annoucements/Annoucements.tsx";
-
 import Sidebar from "./sections/Sidebar";
 import HeadingSection from "./sections/HeadingSection";
 import PersonalSection from "./sections/PersonalSection";
