@@ -29,6 +29,15 @@ class SlideLinkService {
             throw error;
         }
     }
+    async view() {
+        try {
+            const slideLink = await slidelinkrepo.getAll();
+            return slideLink;
+        }
+        catch (error) {
+            throw error;
+        }
+    }
 
 }
 

@@ -1,4 +1,5 @@
 // const { SlideLinkService } = require('../services');
+const { response } = require('express');
 const SlideLinkService = require('../services/slidelinkservice')
 const slideLinkService = new SlideLinkService();
 
@@ -45,7 +46,29 @@ const deleteAll = async (req, res) => {
         });
     }
 }
+const viewLink = async (req, res) => {
+    try {
+        const response = await slideLinkService.view();
+        console.log("our response is ", response);
+        return res.status(200).json({
+            data: response,
+            success: true,
+            message: 'sidelink fetched successfully',
+            error: {}
+        });
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Failed to fetchlink',
+            error: error
+        });
+    }
+}
 module.exports = {
     create,
-    deleteAll
+    deleteAll,
+    viewLink
 }
