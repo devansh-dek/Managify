@@ -48,4 +48,16 @@ Then run server on other terminal
 ```bash
 cd server
 npm install
-npm start```
+npm start
+```
+Create a .env file in server
+```bash
+cd server
+touch .env
+```
+add following in .env
+```json
+MONGO_DB_URI = YOUR URI
+JWT_SECRET_KEY = YOUR SECRET KEY
+PORT = PORT
+```
