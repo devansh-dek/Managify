@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import Icon from "../../assets/google_slides.png";
+import Icon from "../../assets/google.png";
 import {
   Popover,
   PopoverContent,
@@ -9,11 +9,11 @@ import {
 import { toast } from "react-toastify";
 
 interface srcObj {
-  src: string
+  src: string;
 }
 
 const GoogleSlides = ({ src }: srcObj) => {
-  const wrapperStyle= {
+  const wrapperStyle = {
     position: "relative",
     overflow: "hidden",
     width: "640px",
@@ -29,7 +29,7 @@ const GoogleSlides = ({ src }: srcObj) => {
   };
 
   return (
-    <div className="relative overflow-hidden w-[320px] h-[180px]">
+    <div className="relative overflow-hidden w-[320px] h-[180px] p-10">
       <iframe
         src={src}
         frameBorder="0"
@@ -73,9 +73,12 @@ function SlideSection() {
   }
 
   return (
-    <div className="flex flex-wrap pl-4 bg-[#232634]  rounded-[20px] px-4 w-[65%] m-[25px]">
-      <div className="w-full text-lg text-white font-regular font-roboto p-3">
-        <img src={Icon} className="h-20" alt="Google Slides Icon" />
+    <div className="flex flex-wrap p-4  bg-[#232634]  rounded-[20px] px-6 w-[65%] m-[25px] ">
+      <div className="w-full flex flex-wrap text-lg text-white font-regular  p-3">
+        <img src={Icon} className="h-12" alt="Google Slides Icon" />
+        <p className="text-white text-xl pt-[12px] font-[500] ">
+          Google Calender
+        </p>
       </div>
       {slides.map((slideLink, i) => (
         <div key={i}>

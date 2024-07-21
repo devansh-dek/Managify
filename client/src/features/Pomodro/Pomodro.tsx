@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import Icon from "../../assets/pomodoro-technique.png";
 const PomodoroClock: React.FC = () => {
   const [time, setTime] = useState<number>(1500);
   const [isActive, setIsActive] = useState<boolean>(false);
@@ -48,6 +48,7 @@ const PomodoroClock: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[100px] w-[350px] bg-[#292c3c] m-5 mt-10 mb-10 rounded-[10px] p-5 ">
+      <img src={Icon} className="h-12" />
       <div className="flex flex-row justify-evenly items-center font-roboto font-semibold text-sm text-center">
         <div
           className={`m-2 p-2 cursor-pointer  rounded-xl ${

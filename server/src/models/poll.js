@@ -8,6 +8,7 @@ const OptionSchema = new mongoose.Schema({
 const PollSchema = new mongoose.Schema({
     question: { type: String, required: true },
     options: [OptionSchema],
+    votedUsers: [String],
 });
 
 module.exports = mongoose.model('Poll', PollSchema);
