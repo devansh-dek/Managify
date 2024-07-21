@@ -54,7 +54,7 @@ const PomodoroClock: React.FC = () => {
           className={`m-2 p-2 cursor-pointer  rounded-xl ${
             tab === 1 ? "bg-[#e5c890] text-gray-800" : "text-white"
           }`}
-          onClick={(e) => setPomodro(1)}
+          onClick={() => setPomodro(1)}
         >
           Pomodoro
         </div>
@@ -62,7 +62,7 @@ const PomodoroClock: React.FC = () => {
           className={`m-2 p-2 cursor-pointer rounded-xl ${
             tab === 2 ? "bg-[#e5c890] text-gray-800" : "text-white"
           }`}
-          onClick={(e) => setPomodro(2)}
+          onClick={() => setPomodro(2)}
         >
           Short Break
         </div>
@@ -70,7 +70,7 @@ const PomodoroClock: React.FC = () => {
           className={`m-2 p-2 cursor-pointer rounded-xl ${
             tab === 3 ? "bg-[#e5c890] text-gray-800" : "text-white"
           }`}
-          onClick={(e) => setPomodro(3)}
+          onClick={() => setPomodro(3)}
         >
           Long Break
         </div>

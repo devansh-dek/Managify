@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Icon from "../../assets/google.png";
 import {
@@ -13,23 +13,13 @@ interface srcObj {
 }
 
 const GoogleSlides = ({ src }: srcObj) => {
-  const iframeStyle = {
-    position: "absolute",
-    top: "-0px",
-    left: "-30px",
-    width: "calc(100% + 60px)",
-    height: "calc(100% + 40px)",
-  };
-
   return (
     <div className="relative overflow-hidden w-[320px] h-[180px] mx-3 p-10">
       <iframe
         src={src}
         frameBorder="0"
         allowFullScreen={true}
-        mozallowfullscreen="true"
-        webkitallowfullscreen="true"
-        style={iframeStyle}
+        className="absolute left-[-30px] w-[calc(100% + 60px)] w-[calc(100% + 40px)]"
       />
     </div>
   );
@@ -37,7 +27,7 @@ const GoogleSlides = ({ src }: srcObj) => {
 
 function SlideSection() {
   const defaultSlides = localStorage.getItem("slideLinks");
-  const [slides, setSlides] = useState([]);
+  const [slides, setSlides] = useState<string[]>([]);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [slideLink, setSlideLink] = useState("");
 
@@ -52,7 +42,7 @@ function SlideSection() {
       toast("Please enter a slide link");
       return;
     }
-    const newSlides = [...slides, slideLink];
+    const newSlides:string[] = [...slides, slideLink];
     localStorage.setItem("slideLinks", JSON.stringify(newSlides));
     setSlides(newSlides);
     setIsPopoverOpen(false);

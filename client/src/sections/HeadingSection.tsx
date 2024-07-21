@@ -1,7 +1,5 @@
 import Announcements from "@/features/Annoucements/Annoucements";
 import CompanySlide from "@/features/Slides/CompanySlide";
-import Tasks from "@/features/Tasks/Tasks";
-import React from "react";
 
 function HeadingSection() {
     return (

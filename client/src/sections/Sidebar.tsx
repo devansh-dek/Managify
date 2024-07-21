@@ -1,4 +1,3 @@
-import { User2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import PomodoroClock from "@/features/Pomodro/Pomodro";
 import Spotify from "@/features/Spotify/Spotify";
